@@ -66,15 +66,46 @@
 		// cancel
 		return;
 	}
+	
+	flatterzone *= 0.01;
+	randomness *= 0.01;
 
-	for (var i = 0; i < len; i++) {
-		var sel = app.selection[i];
+	for (var n = 0; i < len; n++) {
+		var sel = app.selection[n];
 
 		if (sel.constructor.name != "TextFrame") {
 			alert("selection is not a text frame → ignoring it");
 			continue;
 		}
 		
+		var x = sel.geometricBounds[3];
+		var y = sel.geometricBounds[0];
+		var width = x - sel.geometricBounds[1];
+
+		var pointsize = sel.insertionPoints[0].pointSize;
+		var leading = sel.insertionPoints[0].leading;
+		if (leading == Leading.AUTO) {
+			leading = pointsize * 1.2;
+		}
+		
+		for (var i = 0; i < sel.lines.length; i++) {
+			var line_y = y + (0.5 * pointsize) + (i * leading);
+			var flatter_width = (width * flatterzone);
+			var variance = randomness * flatter_width * ((Math.random() - 0.5) * 2); // +- xy%
+			if (i % 2 == 0) {
+				variance = randomness * flatter_width * Math.random();
+			}
+			var line = doc.graphicLines.add({layer: doc.activeLayer});
+			if (i % 2 == 0) {
+				line.geometricBounds = [line_y, x, line_y, x - variance];
+			} else {
+				line.geometricBounds = [line_y, x, line_y, x - flatter_width + variance];
+			}
+	
+			line.textWrapPreferences.textWrapMode = TextWrapModes.BOUNDING_BOX_TEXT_WRAP;
+			line.strokeColor = doc.swatches.itemByName("Paper");
+			line.transparencySettings.blendingSettings.opacity = 0;
+		}
 	}
 
 	done();
