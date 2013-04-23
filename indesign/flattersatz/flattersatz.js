@@ -69,6 +69,8 @@
 	
 	flatterzone *= 0.01;
 	randomness *= 0.01;
+	
+	create_layer(doc, script_name);
 
 	for (var n = 0; i < len; n++) {
 		var sel = app.selection[n];
@@ -95,7 +97,7 @@
 			if (i % 2 == 0) {
 				variance = randomness * flatter_width * Math.random();
 			}
-			var line = sel.parentPage.graphicLines.add({layer: doc.activeLayer});
+			var line = sel.parentPage.graphicLines.add({layer: script_name});
 			if (i % 2 == 0) {
 				line.geometricBounds = [line_y, x, line_y, x - variance];
 			} else {

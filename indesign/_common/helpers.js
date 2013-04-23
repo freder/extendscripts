@@ -29,9 +29,18 @@ function restore_measurement_units(doc) {
 			horizontalMeasurementUnits = old_x_units;
 			verticalMeasurementUnits = old_y_units;
 		}
-		catch(e) {
+		catch (e) {
 			alert("could not reset custom measurement units.");
 		}
+	}
+}
+
+
+function create_layer(doc, _name) {
+	try {
+		doc.layers.add({name: _name});
+	} catch (e) {
+		// layer already exists
 	}
 }
 
