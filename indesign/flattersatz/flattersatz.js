@@ -95,7 +95,7 @@
 			if (i % 2 == 0) {
 				variance = randomness * flatter_width * Math.random();
 			}
-			var line = doc.graphicLines.add({layer: doc.activeLayer});
+			var line = sel.parentPage.graphicLines.add({layer: doc.activeLayer});
 			if (i % 2 == 0) {
 				line.geometricBounds = [line_y, x, line_y, x - variance];
 			} else {
