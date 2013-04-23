@@ -1,0 +1,1 @@
+﻿#include "../_common/helpers.jsx"(function() {	var script_name = remove_file_extension( get_filename($.fileName) );	var doc = app.activeDocument;	store_measurement_units(doc);	// do stuff ...	restore_measurement_units(doc)})();
