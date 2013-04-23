@@ -1,6 +1,17 @@
 #include "../../_libs/underscore-1.4.4.js"
 
 
+function log(msg) {
+	$.writeln(msg);
+}
+function warn(msg) {
+	log("WARNING: " + msg);
+}
+function error(msg) {
+	log("ERROR: " + msg);
+}
+
+
 var old_x_units, old_y_units;
 function store_measurement_units(doc) {
 	with (doc.viewPreferences) {
@@ -22,6 +33,11 @@ function restore_measurement_units(doc) {
 			alert("could not reset custom measurement units.");
 		}
 	}
+}
+
+
+function current_page_number() {
+	return app.activeWindow.activePage.name;
 }
 
 
