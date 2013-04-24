@@ -12,6 +12,11 @@
 		restore_measurement_units(doc);
 	}
 
+	if (app.documents.length === 0) {
+		alert("open a document first");
+		return;
+	}
+
 	var script_name = remove_file_extension( get_filename($.fileName) );
 	var doc = app.activeDocument;
 
