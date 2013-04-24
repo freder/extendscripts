@@ -3,8 +3,10 @@
 (function() {
 	function init() {
 		store_measurement_units(doc);
+		redraw_off();
 	}
 	function done() {
+		redraw_on();
 		restore_measurement_units(doc);
 	}
 

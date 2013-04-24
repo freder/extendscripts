@@ -12,6 +12,14 @@ function error(msg) {
 }
 
 
+function redraw_on() {
+	app.scriptPreferences.enableRedraw = true;
+}
+function redraw_off() {
+	app.scriptPreferences.enableRedraw = false;
+}
+
+
 var old_x_units, old_y_units;
 function store_measurement_units(doc) {
 	with (doc.viewPreferences) {
