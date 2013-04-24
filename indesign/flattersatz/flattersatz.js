@@ -1,4 +1,6 @@
-﻿#include "../_common/helpers.js"
+﻿#strict on
+#target "InDesign";
+#include "../_common/helpers.js";
 
 (function() {
 	function init() {
