@@ -102,14 +102,13 @@
 		for (var i = 0; i < sel.lines.length; i++) {
 			var line_y = y + (0.5 * pointsize) + (i * leading);
 			var flatter_width = (width * flatterzone);
-			var variance = randomness * flatter_width * ((Math.random() - 0.5) * 2); // +- xy%
-			if (i % 2 == 0) {
-				variance = randomness * flatter_width * Math.random();
-			}
+			var variance;
 			var line = sel.parentPage.graphicLines.add({layer: script_name});
 			if (i % 2 == 0) {
+				variance = randomness * flatter_width * Math.random();
 				line.geometricBounds = [line_y, x, line_y, x - variance];
 			} else {
+				variance = randomness * flatter_width * ((Math.random() - 0.5) * 2);
 				line.geometricBounds = [line_y, x, line_y, x - flatter_width + variance];
 			}
 	
